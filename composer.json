@@ -1,0 +1,25 @@
+{
+    "name": "sfw2/interoperability",
+    "type": "library",
+    "license": "AGPL-3.0-or-later",
+    "description": "holds several interfaces for interoperability",
+    "keywords": ["sfw2", "micro-framework", "interfaces", "interoperability"],
+    "authors": [
+        {
+            "name": "Stefan Paproth",
+            "email": "pappi-@gmx.de"
+        }
+    ],
+    "require": {
+        "php": "^8.1"
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^2.1.5",
+        "squizlabs/php_codesniffer": "^3.11"
+    },
+    "autoload": {
+        "psr-4": {
+            "SFW2\\Interoperability\\": "src/"
+        }
+    }
+}
