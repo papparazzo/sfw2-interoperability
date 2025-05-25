@@ -3,7 +3,7 @@
 /**
  *  SFW2 - SimpleFrameWork
  *
- *  Copyright (C) 2025 Stefan Paproth
+ *  Copyright (C) 2024 Stefan Paproth
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Affero General Public License as
@@ -17,13 +17,18 @@
  *
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program. If not, see <https://www.gnu.org/licenses/agpl.txt>.
+ *
  */
 
-namespace SFW2\Interoperability;
+declare(strict_types=1);
 
-use SFW2\Interoperability\Path\MethodType;
+namespace SFW2\Interoperability\Path;
 
-interface PermissionInterface
+interface PathMapInterface
 {
-    public function hasPermission(int $pathId, MethodType $method = MethodType::GET): bool;
+    public function hasPath(Path $path): bool;
+
+    public function getPathId(Path $path): int;
+
+    public function getPathById(int $pathId): Path;
 }

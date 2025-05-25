@@ -17,13 +17,18 @@
  *
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program. If not, see <https://www.gnu.org/licenses/agpl.txt>.
+ *
  */
 
-namespace SFW2\Interoperability;
+declare(strict_types=1);
 
-use SFW2\Interoperability\Path\MethodType;
+namespace SFW2\Interoperability\Path;
 
-interface PermissionInterface
+enum MethodType: string
 {
-    public function hasPermission(int $pathId, MethodType $method = MethodType::GET): bool;
+    case GET = 'GET';
+    case POST = 'POST';
+    case PUT = 'PUT';
+    case DELETE = 'DELETE';
+    case ANY = 'ANY';
 }

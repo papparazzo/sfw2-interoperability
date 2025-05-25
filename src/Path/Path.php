@@ -17,13 +17,38 @@
  *
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program. If not, see <https://www.gnu.org/licenses/agpl.txt>.
+ *
  */
 
-namespace SFW2\Interoperability;
+declare(strict_types=1);
 
-use SFW2\Interoperability\Path\MethodType;
+namespace SFW2\Interoperability\Path;
 
-interface PermissionInterface
+use Psr\Http\Message\ServerRequestInterface;
+
+final readonly class Path
 {
-    public function hasPermission(int $pathId, MethodType $method = MethodType::GET): bool;
+    private function __construct(private string $path, private MethodType $method = MethodType::GET)
+    {
+    }
+
+    public static function create(string $path, MethodType $method = MethodType::GET): Path
+    {
+        return new Path($path, $method);
+    }
+
+    public static function createFromRequest(ServerRequestInterface $request): Path
+    {
+        return new Path($request->getUri()->getPath(), MethodType::from($request->getMethod()));
+    }
+
+    public function getPath(): string
+    {
+        return $this->path;
+    }
+
+    public function getMethod(): MethodType
+    {
+        return $this->method;
+    }
 }

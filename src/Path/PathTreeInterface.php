@@ -3,7 +3,7 @@
 /**
  *  SFW2 - SimpleFrameWork
  *
- *  Copyright (C) 2024  Stefan Paproth
+ *  Copyright (C) 2025 Stefan Paproth
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Affero General Public License as
@@ -16,19 +16,24 @@
  *  GNU Affero General Public License for more details.
  *
  *  You should have received a copy of the GNU Affero General Public License
- *  along with this program. If not, see <http://www.gnu.org/licenses/agpl.txt>.
+ *  along with this program. If not, see <https://www.gnu.org/licenses/agpl.txt>.
  *
  */
 
 declare(strict_types=1);
 
-namespace SFW2\Interoperability;
+namespace SFW2\Interoperability\Path;
 
-interface PathMapInterface
+interface PathTreeInterface
 {
-    public function hasPath(string $path, string $method = 'GET'): bool;
+    /**
+     * @param int $pathId
+     * @param MethodType $onlyMethod
+     * @return int[]
+     */
+    public function getChildren(int $pathId, MethodType $onlyMethod = MethodType::GET): array;
 
-    public function getPathId(string $path, string $method = 'GET'): int;
+    public function getParent(int $pathId): int;
 
-    public function getPathById(int $pathId): string;
+    public function getRoot(): int;
 }
